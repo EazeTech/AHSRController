@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar color='primary'>
+    <ion-title>
+      AHSR Controller
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <button color='secondary' ion-button (click)='turnONBluetooth()'>ON</button>
+  <button color='danger' ion-button float-right (click)='turnOFFBluetooth()'>OFF</button>
+
+  <div>
+      <button color='primary' ion-button (click)='startScan()'>SCAN</button>
+      <button color='primary' ion-button (click)='stopScan()' float-right>STOP</button>
+  </div>
+
+  <h4 class="headR">Found Devices</h4>
+  <div class="spinR" *ngIf="!bt_devicesFound">
+      <ion-spinner class="spinner energized"></ion-spinner>
+  </div>
+
+  <br>
+  <ion-list>
+      <ion-card *ngFor ='let device of bt_devicesFound' padding>
+        <!-- <ion-item>{{device.class}}</ion-item> -->
+        <!-- <ion-item>{{device.id}}</ion-item> -->
+        <!-- <ion-item>{{device.address}}</ion-item>-->
+        <ion-item (click)='loadPage($event, device)'>{{device.id}}</ion-item> 
+      </ion-card>
+  </ion-list>
+
+</ion-content>
